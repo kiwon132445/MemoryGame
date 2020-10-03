@@ -1,0 +1,107 @@
+
+#main {
+    background-color: paleturquoise;
+}
+
+/* game title */
+#game-name {
+    display: block;
+    background-color: paleturquoise;
+    color: black;
+    border: 1px solid black;
+    margin:2px;
+}
+
+/* game screen containing start and game screens */
+#game-screen {
+    background-color: rgb(193,154,107);
+    color: white;
+    border: white solid;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    
+}
+
+/* start screen */
+#start-screen {
+    background-color: grey;
+    margin: auto;
+    padding-left: 1%;
+    padding-right: 1%;
+    border: 1px solid black;
+}
+/* play button */
+.play {
+    background-color: rgb(185, 64, 33);
+}
+
+/* gameboard */
+#board {
+    display: grid;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+    background-color: black;
+    align-self: center;
+    transition: transform 1s;
+}
+
+/* tiles in the board */
+.tile {
+    border: 2px solid white;
+    perspective: 1000px;
+    background-color: transparent;
+}
+.innerTile {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+
+}
+.frontTile {
+    background-color: gray;
+}
+.frontTile, .correct-tile, .incorrect-tile {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+}
+.correct-tile {
+    background-color: blue;
+    transform: rotateY(180deg);
+    text-align: center;
+}
+.correct-tile h1 {
+    margin: 0;
+}
+.incorrect-tile {
+    background-color: red;
+    transform: rotateY(180deg);
+}
+
+/* terminate button */
+#Terminate h2 {
+    margin:0;
+}
+
+/* scoreboard display */
+#menubar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+#menubar li {
+    display: inline;
+    border: 1px black solid;
+    background-color: brown;
+    color: white;
+    padding: 5px;
+}

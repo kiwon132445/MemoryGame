@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Kiwon Song</title>
+        <link rel="stylesheet" href="./CSS/style.css">
+    </head>
+    
+    <body id="main">
+        <div class="main-page">
+            <img id="kiki" src="./CSS/Resources/memory.jpg" alt="In Memory of my Best Friend Kiki">
+            <p>
+                My name is Kiwon Song. The image above is of my dear dog Kiki who passed away 2020, 
+                which is this year and this photo is to commemorate my memory with him
+            </p>
+            <ul>
+                <li><a href="./Courses/COMP4537/">COMP4537</a></li>
+                <li>COMP4952</li>
+                <li>COMP4800</li>
+                <li>BLAW3600</li>
+                <li>COMP4956</li>
+            </ul>
+        </div>
+        <!--//////////////////////////////////////////////////////////////////////////////////////////////-->
+
+        <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-analytics.js"></script>
+
+        <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyDetaNf36IP7vmVHKLBvU_6RoYTl5VQwjQ",
+            authDomain: "internetarchitecture-486eb.firebaseapp.com",
+            databaseURL: "https://internetarchitecture-486eb.firebaseio.com",
+            projectId: "internetarchitecture-486eb",
+            storageBucket: "internetarchitecture-486eb.appspot.com",
+            messagingSenderId: "254843625253",
+            appId: "1:254843625253:web:054576a32b6904a112c4cc",
+            measurementId: "G-FHF0PQNNKR"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        </script>
+    </body>
+</html>
