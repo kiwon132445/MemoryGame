@@ -1,4 +1,4 @@
-let game;
+let game, summaryBoard;
 
 //initiates the game
 function startGame() {
@@ -11,14 +11,11 @@ function startGame() {
 
 //adds terminate function
 function addTerminate() {
-    let divElement = document.createElement(div);
-    divElement.id = terminate;
-    let h2 = document.createElement(button);
-    divElement.addEventListener(mouseClick, gameTerminate);
+    let terminateButton = document.createElement(button);
+    terminateButton.id = terminate;
+    terminateButton.addEventListener(mouseClick, gameTerminate);
 
-    h2.innerHTML = terminate;
-    h2.className = buttonClass;
-
-    divElement.append(h2);
-    document.getElementById(game_screen).append(divElement);
+    terminateButton.innerHTML = terminate;
+    terminateButton.className = buttonClass;
+    document.getElementById(game_screen).append(terminateButton);
 }

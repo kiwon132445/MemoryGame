@@ -1,5 +1,6 @@
 class Game {
     constructor() {
+        //this.canTerminate = true;
         this.tiles = [];
         this.grid = [3,3];
         this.numberOfCorrectTile = 4;
@@ -31,8 +32,12 @@ class Game {
     start() {
         setTimeout(() => {
             this.flipCorrectTiles();
+            document.getElementById(terminate).disabled = true;
+            //this.canTerminate = false;
             setTimeout(() => {
                 this.flipBackCorrectTiles();
+                document.getElementById(terminate).disabled = false;
+                //this.canTerminate = true;
             }, 2500)
         }, 1000);
         
@@ -47,7 +52,7 @@ class Game {
     }
     gainScore(tile) {
         this.correctTileFlipped++;
-        this.score += 250
+        this.score += 1;
         this.scoreboard.setScore(this.score);
         if(tile.getCorrectTileIndex() == (this.correctTileFlipped - 1)) {
             if (this.correctTileFlipped == this.numberOfCorrectTile) {
@@ -63,7 +68,7 @@ class Game {
     
     loseScore() {
         this.incorrectTileFlipped++;
-        this.score -= 250;
+        this.score -= 1;
         this.scoreboard.setScore(this.score);
         if (this.score <= 0) {
             this.revealCorrectTilesX();
@@ -84,7 +89,7 @@ class Game {
                 this.scoreboard.setNumberOfCorrectTiles(this.numberOfCorrectTile);
             }
         }
-        this.score+=250;
+        this.score+=1;
         this.scoreboard.setScore(this.score);
         this.tiles = new Array();
         this.setup();
@@ -94,22 +99,35 @@ class Game {
         this.revealCorrectTilesX();
         setTimeout(() => {
             if (this.grid[0] > this.grid[1]) {
-                this.grid[0] -= 1;
+                if (this.grid[0] > 1) {
+                    this.grid[0] -= 1;
+                }
             } else if(this.grid[0] == this.grid[1]) {
-                this.grid[1] -= 1;
-                this.numberOfCorrectTile -= 1;
-                this.scoreboard.setNumberOfCorrectTiles(this.numberOfCorrectTile);
+                if (this.grid[1] > 1) {
+                    this.grid[1] -= 1;
+                }
+                if (this.numberOfCorrectTile > 1) {
+                    this.numberOfCorrectTile -= 1;
+                    this.scoreboard.setNumberOfCorrectTiles(this.numberOfCorrectTile);
+                }
             }
-            this.score-=250;
+            this.score-=1;
             this.scoreboard.setScore(this.score);
             if (this.score > 0) {
                 this.scoreboard.setScore(this.score);
                 this.tiles = new Array();
                 this.setup();
             } else {
-                this.gameboard.loseBoard();
+                this.gameTerminate();
             }
         }, 2000);
+    }
+
+    gameTerminate() {
+        game.gameboard.loseBoard();
+        game.scoreboard.scoreboard.remove();
+        document.getElementById(terminate).remove();
+        summaryBoard = new Summary(this.score);
     }
 
     flipCorrectTiles() {

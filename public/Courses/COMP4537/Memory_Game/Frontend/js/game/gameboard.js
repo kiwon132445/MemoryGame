@@ -41,7 +41,7 @@ class Gameboard {
         this.gameScreen.append(this.board);
     }
     loseBoard() {
-        this.gameScreen.innerHTML = "";
+        this.board.remove();
     }
 
     setTiles(tiles) {

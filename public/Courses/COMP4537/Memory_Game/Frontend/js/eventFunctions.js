@@ -23,5 +23,10 @@ function adjustScreen() {
 
 //game termination event function
 function gameTerminate() {
-
+    //if(game.canTerminate) {
+        let userChoice = confirm(userTerminatePrompt);
+        if (userChoice) {
+            game.gameTerminate();
+        }
+    //}
 }
