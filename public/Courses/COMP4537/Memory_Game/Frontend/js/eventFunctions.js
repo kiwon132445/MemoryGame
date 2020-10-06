@@ -1,3 +1,8 @@
+window.addEventListener(load, () => {
+    adjustScreen();
+    window.addEventListener(resize, adjustScreen);
+});
+
 //a function for adjusting the dimensions of the screen where the memory game will be placed
 function adjustScreen() {
     let gameScreen = document.getElementById(game_screen);
@@ -14,11 +19,6 @@ function adjustScreen() {
         gameScreen.style.height = height + pixel;
         gameScreen.style.marginTop = 0;
     }
-}
-
-//resize board and tiles when screensize is changed
-function gameboardResizeEvent() {
-    game.resizeBoard();
 }
 
 //game termination event function

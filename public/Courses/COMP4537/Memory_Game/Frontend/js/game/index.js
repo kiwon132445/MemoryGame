@@ -1,8 +1,3 @@
-window.addEventListener(load, () => {
-    adjustScreen();
-    window.addEventListener(resize, adjustScreen);
-});
-
 let game;
 
 //initiates the game
@@ -11,7 +6,7 @@ function startGame() {
     game = new Game()
     game.setup();
     addTerminate();
-    window.addEventListener(resize, gameboardResizeEvent);
+    window.addEventListener(resize, game.resizeBoard());
 }
 
 //adds terminate function
