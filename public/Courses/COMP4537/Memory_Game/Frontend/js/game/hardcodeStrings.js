@@ -53,3 +53,4 @@ const fusername = "fusername";
 const anonymous = "Anonymous";
 const submitValue = "Submit";
 const submitID = "userSubmission";
+const play = "play";

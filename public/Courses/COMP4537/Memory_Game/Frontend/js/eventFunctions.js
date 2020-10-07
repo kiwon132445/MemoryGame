@@ -1,6 +1,7 @@
 window.addEventListener(load, () => {
     adjustScreen();
     window.addEventListener(resize, adjustScreen);
+    document.getElementById(play).addEventListener(mouseClick, startGame);
 });
 
 //a function for adjusting the dimensions of the screen where the memory game will be placed
