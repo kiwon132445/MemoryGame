@@ -1,7 +1,9 @@
 class Tile {
+    static allowFlip = true;
     constructor() {
         this.selected = false;
         this.isCorrectTile = false;
+        this.allowFlip = true;
         this.index = null;
         this.nextTile = null;
         this.dom = document.createElement(div);
@@ -47,27 +49,30 @@ class Tile {
         });
 
         this.dom.addEventListener(mouseClick, () => {
-            if(!this.getSelected()) {
+            if(Tile.allowFlip && !this.getSelected()) {
                 document.getElementById(wrongtilesfx).play();
-                
                 this.setSelected();
                 this.flipTileX();
+                Tile.allowFlip = false;
 
                 setTimeout(() => {
                     if(this.getIsCorrectTile()) {
-                        if (game.gainScore(this) == 1) {
+                        if (!game.checkOrder(this)) {
                             this.incorrectOrder();
                             
                             setTimeout(()=> {
                                 game.revealCorrectTilesX();
                                 setTimeout(()=>{
                                     game.lose();
+                                    Tile.allowFlip = true;;
                                 }, 1000)
                             }, 1000);
                         }
                     } else {
                         game.loseScore();
+                        Tile.allowFlip = true;;
                     }
+                    
                 }, 1000);
             }
         });

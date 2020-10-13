@@ -15,6 +15,9 @@
     <div id="serverReturnValue">
 
     </div>
+    <form method="get" action="../../../../../">
+        <button type="submit">Return to homepage</button>
+    </form>
     
     <script>
         document.getElementById("submitName").addEventListener("click", serverRequest);
@@ -22,7 +25,7 @@
         function serverRequest() {
             let xhttp = new XMLHttpRequest();
             let str = document.getElementById("username").value;
-            xhttp.open("GET", "http://localhost:8080/?name=" + str, true);
+            xhttp.open("GET", "https://safe-ravine-37820.herokuapp.com/?name=" + str, true);
             xhttp.send();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {

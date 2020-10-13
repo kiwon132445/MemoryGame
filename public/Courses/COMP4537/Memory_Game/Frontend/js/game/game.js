@@ -1,8 +1,8 @@
 class Game {
     constructor() {
-        //this.canTerminate = true;
         this.tiles = [];
         this.grid = [3,3];
+        this.tileOrder = [];
         this.numberOfCorrectTile = 4;
         this.score = 0;
         this.incorrectTileFlipped = 0;
@@ -11,7 +11,8 @@ class Game {
         this.scoreboard = new Scoreboard(this.score, this.numberOfCorrectTile);
     }
     setup() {
-        let terminateButton = document.getElementById(terminate);
+        Tile.allowFlip = true;
+        this.terminateButton = document.getElementById(terminate);
         this.incorrectTileFlipped = 0;
         this.correctTileFlipped = 0;
 
@@ -21,9 +22,9 @@ class Game {
         this.resetBoard();
         this.resetScoreBoard();
 
-        if (terminateButton != null) {
-            terminateButton.remove();
-            document.getElementById(game_screen).append(terminateButton);
+        if (this.terminateButton != null) {
+            document.getElementById(game_screen).removeChild(this.terminateButton);
+            document.getElementById(game_screen).append(this.terminateButton);
         }
         
         this.start();
@@ -32,11 +33,12 @@ class Game {
     start() {
         setTimeout(() => {
             this.flipCorrectTiles();
-            document.getElementById(terminate).disabled = true;
+            this.terminateButton.disabled = true;
+            
             //this.canTerminate = false;
             setTimeout(() => {
                 this.flipBackCorrectTiles();
-                document.getElementById(terminate).disabled = false;
+                this.terminateButton.disabled = false;
                 //this.canTerminate = true;
             }, 2500)
         }, 1000);
@@ -49,6 +51,19 @@ class Game {
             }, 1000)
         }, 5000);
         
+    }
+    checkOrder(tile) {
+        console.log(tile);
+        console.log(this.tileOrder[tile.getCorrectTileIndex()-1]);
+        if(tile.getCorrectTileIndex() == 0) {
+            return true;
+        } else {
+            if (this.tileOrder[tile.getCorrectTileIndex()-1].getSelected()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
     gainScore(tile) {
         this.correctTileFlipped++;
@@ -126,7 +141,7 @@ class Game {
     gameTerminate() {
         game.gameboard.loseBoard();
         game.scoreboard.scoreboard.remove();
-        document.getElementById(terminate).remove();
+        this.terminateButton.remove();
         summaryBoard = new Summary(this.score);
     }
 
@@ -199,6 +214,7 @@ class Game {
                 if (!this.tiles[row][column].getIsCorrectTile()) {
                     this.tiles[row][column].setIsCorrectTile();
                     this.tiles[row][column].setCorrectTileIndex(i);
+                    this.tileOrder[i] = this.tiles[row][column];
                     break;
                 }
             }
