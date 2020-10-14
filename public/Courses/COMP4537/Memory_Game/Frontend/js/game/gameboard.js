@@ -36,12 +36,15 @@ class Gameboard {
         this.board.style.transform = rotateBack;
     }
     resetBoard() {
-        this.gameScreen.removeChild(this.board);
-        this.rotateBack();
-        this.gameScreen.append(this.board);
+        if(this.board != null) {
+            this.gameScreen.removeChild(this.board);
+            this.rotateBack();
+            this.gameScreen.append(this.board);
+        }
     }
     loseBoard() {
         this.board.remove();
+        this.board = null;
     }
 
     setTiles(tiles) {
@@ -56,18 +59,9 @@ class Gameboard {
     }
 
     setTileDimension(tiles) {
-        let column = this.tileSize + pixel + space;
-        let row = this.tileSize + pixel + space;
+        let size = this.tileSize + pixel;
         this.board.innerHTML = "";
-        
-        for(let i = 0; i < tiles.length - 1; i++) {
-            column += this.tileSize + pixel + space;
-        }
-        this.board.style.gridTemplateRows = column;
-
-        for(let j = 0; j < tiles[0].length - 1; j++) {
-            row += this.tileSize + pixel + space;
-        }
-        this.board.style.gridTemplateColumns = row;
+        this.board.style.gridTemplateRows = tileRepeat + tiles.length + comma + size + closingBracket;
+        this.board.style.gridTemplateColumns = tileRepeat + tiles[0].length + comma + size + closingBracket;
     }
 }

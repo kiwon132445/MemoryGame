@@ -45,16 +45,17 @@ class Game {
         
         
         setTimeout(() => {
-            this.gameboard.rotateBoard();
-            setTimeout(() => {
-                this.setEventsToTiles();
-            }, 1000)
+            if(this.gameboard.board!=null) {
+                this.gameboard.rotateBoard();
+            
+                setTimeout(() => {
+                    this.setEventsToTiles();
+                }, 1000)
+            }
         }, 5000);
         
     }
     checkOrder(tile) {
-        console.log(tile);
-        console.log(this.tileOrder[tile.getCorrectTileIndex()-1]);
         if(tile.getCorrectTileIndex() == 0) {
             return true;
         } else {
@@ -66,10 +67,10 @@ class Game {
         }
     }
     gainScore(tile) {
-        this.correctTileFlipped++;
-        this.score += 1;
-        this.scoreboard.setScore(this.score);
-        if(tile.getCorrectTileIndex() == (this.correctTileFlipped - 1)) {
+        if(this.checkOrder(tile)) {
+            this.correctTileFlipped++;
+            this.score += 1;
+            this.scoreboard.setScore(this.score);
             if (this.correctTileFlipped == this.numberOfCorrectTile) {
                 setTimeout(() => {
                     this.win();
@@ -92,9 +93,11 @@ class Game {
         if (this.incorrectTileFlipped >= 4) {
             this.lose();
         }
+        
     }
 
     win() {
+        Tile.allowFlip = false;
         if (this.grid[0] < 7 || this.grid[1] < 7) {
             if (this.grid[0] > this.grid[1]) {
                 this.grid[1] += 1;
@@ -111,6 +114,7 @@ class Game {
     }
 
     lose() {
+        Tile.allowFlip = false;
         this.revealCorrectTilesX();
         setTimeout(() => {
             if (this.grid[0] > this.grid[1]) {
@@ -167,6 +171,7 @@ class Game {
         for(let i = 0; i < this.grid[0]; i++) {
             for(let j = 0; j < this.grid[1]; j++) {
                 if(this.tiles[i][j].getIsCorrectTile()) {
+                    this.tiles[i][j].incorrectOrder();
                     this.tiles[i][j].flipTileX();
                 }
             }

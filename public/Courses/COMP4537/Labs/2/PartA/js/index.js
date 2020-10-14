@@ -5,7 +5,7 @@ let alphabetArray = [
 window.addEventListener("load", () => {
     let div1 = document.createElement("div");
     let div2 = document.createElement("div");
-
+    
     for(let i = 0; i < alphabetArray.length; i++) {
         let button = document.createElement("button");
         button.style.width = "30px";

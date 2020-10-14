@@ -24,12 +24,18 @@ function addTerminate() {
 }
 
 function serverRequest(username, score) {
+    document.getElementById(gameTitle).innerHTML = "Loading"
     let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", /*"https://murmuring-earth-26989.herokuapp.com/*/ "http://localhost:8080?username=" + username + "&" + "score=" + score, true);
+    //xhttp.open("GET", "http://localhost:8080/?username=" + username + "&" + "score=" + score, true);
+    xhttp.open("GET", "https://murmuring-earth-26989.herokuapp.com/?username=" + username + "&" + "score=" + score, true);
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            leaderBoard = new Leaderboard(username, score, this.responseText);
+            leaderBoard = new Leaderboard(JSON.parse(this.responseText));
         }
     };
+}
+
+function restartGame() {
+    location.reload();
 }

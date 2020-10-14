@@ -58,11 +58,12 @@ class Summary {
         this.gameScreen.append(this.restartButton);
     }
     restart() {
-        document.getElementById(gameTitle).innerHTML = memoryGameTitle;
-        document.getElementById(scorePanel).remove();
-        document.getElementById(scoreSubmission).remove();
-        document.getElementById(restartID).remove();
-        startGame();
+        // document.getElementById(gameTitle).innerHTML = memoryGameTitle;
+        // document.getElementById(scorePanel).remove();
+        // document.getElementById(scoreSubmission).remove();
+        // document.getElementById(restartID).remove();
+        // startGame();
+        restartGame();
     }
 
     handleForm(event) {
@@ -75,7 +76,7 @@ class Summary {
         document.getElementById(scorePanel).remove();
         document.getElementById(scoreSubmission).remove();
         document.getElementById(restartID).remove();
-        console.log(username, score);
+        
         serverRequest(username, score);
     }
 }

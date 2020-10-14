@@ -3,7 +3,6 @@ class Tile {
     constructor() {
         this.selected = false;
         this.isCorrectTile = false;
-        this.allowFlip = true;
         this.index = null;
         this.nextTile = null;
         this.dom = document.createElement(div);
@@ -53,24 +52,29 @@ class Tile {
                 document.getElementById(wrongtilesfx).play();
                 this.setSelected();
                 this.flipTileX();
-                Tile.allowFlip = false;
+                if(this.getIsCorrectTile()) {
+                    if (!game.checkOrder(this)) {
+                        Tile.allowFlip = false;
+                    }
+                } else {
+                    Tile.allowFlip = false;
+                }
 
                 setTimeout(() => {
                     if(this.getIsCorrectTile()) {
-                        if (!game.checkOrder(this)) {
+                        if (game.gainScore(this) == 1) {
                             this.incorrectOrder();
                             
                             setTimeout(()=> {
                                 game.revealCorrectTilesX();
                                 setTimeout(()=>{
                                     game.lose();
-                                    Tile.allowFlip = true;;
                                 }, 1000)
                             }, 1000);
                         }
                     } else {
                         game.loseScore();
-                        Tile.allowFlip = true;;
+                        Tile.allowFlip = true;
                     }
                     
                 }, 1000);
