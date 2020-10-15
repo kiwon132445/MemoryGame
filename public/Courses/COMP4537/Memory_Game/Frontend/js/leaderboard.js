@@ -3,7 +3,6 @@ class Leaderboard {
         document.getElementById(gameTitle).innerHTML = leaderboardTitle;
         this.userList = userList;
         this.gameScreen = document.getElementById(game_screen);
-        console.log(userList);
         this.createRankBoard();
         this.placeRestart();
     }
@@ -22,6 +21,7 @@ class Leaderboard {
         scoreHeader.innerHTML = score;
 
         let headrow = document.createElement(tr);
+        headrow.id = tableHeadID;
         headrow.append(rankHeader);
         headrow.append(usernameHeader);
         headrow.append(scoreHeader);
@@ -35,6 +35,7 @@ class Leaderboard {
 
     insertUser() {
         let row = document.createElement(tr);
+        row.id = userRank;
         let user = this.userList[this.userList.length - 1];
         let rank = document.createElement(td);
         let username = document.createElement(td);
@@ -50,7 +51,6 @@ class Leaderboard {
         this.scoreTable.append(row);
     }
     insertTop5() {
-        console.log("reached logging top5");
         for(let i = 0; i < this.userList.length-1; i++) {
             let row = document.createElement(tr);
 
@@ -66,7 +66,6 @@ class Leaderboard {
             row.append(username)
             row.append(score);
             this.scoreTable.append(row);
-            console.log("Row", this.userList[i]);
         }
     }
     placeRestart() {

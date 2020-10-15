@@ -121,13 +121,13 @@ class Game {
                 if (this.grid[0] > 1) {
                     this.grid[0] -= 1;
                 }
-            } else if(this.grid[0] == this.grid[1]) {
-                if (this.grid[1] > 1) {
-                    this.grid[1] -= 1;
-                }
                 if (this.numberOfCorrectTile > 1) {
                     this.numberOfCorrectTile -= 1;
                     this.scoreboard.setNumberOfCorrectTiles(this.numberOfCorrectTile);
+                }
+            } else if(this.grid[0] == this.grid[1]) {
+                if (this.grid[1] > 1) {
+                    this.grid[1] -= 1;
                 }
             }
             this.score-=1;

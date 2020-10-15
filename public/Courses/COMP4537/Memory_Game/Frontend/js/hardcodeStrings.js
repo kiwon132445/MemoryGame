@@ -73,3 +73,5 @@ const tr = "tr";
 const username = "Username";
 const rank = "Rank";
 const score = "Score";
+const userRank = "user-rank";
+const tableHeadID = "tableHeadID";
