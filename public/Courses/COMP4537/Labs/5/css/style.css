@@ -1,0 +1,26 @@
+#dictionaryAddition {
+    display:flex;
+    flex-direction: column;
+}
+input {
+    width:20%;
+    margin:10px;
+}
+#definition {
+    width: 50%;
+    height: 200pt;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border: 1px black solid;
+    width: fit-content;
+  }
+li {
+    display: inline-block;
+    border-right: 1px black solid;
+    padding-left: 10px;
+    padding-right: 10px;
+}

@@ -24,7 +24,7 @@ function addTerminate() {
 }
 
 function serverRequest(username, score) {
-    //document.getElementById(gameTitle).innerHTML = "Loading"
+    document.getElementById(gameTitle).innerHTML = "Loading"
     let xhttp = new XMLHttpRequest();
     //xhttp.open("GET", "http://localhost:8080/?username=" + username + "&" + "score=" + score, true);
     xhttp.open("GET", "https://murmuring-earth-26989.herokuapp.com/?username=" + username + "&" + "score=" + score, true);

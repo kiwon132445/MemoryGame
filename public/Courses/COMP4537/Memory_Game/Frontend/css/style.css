@@ -3,6 +3,14 @@
     background-color: paleturquoise;
 }
 
+#back-button {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
 /* game title */
 #game-name {
     display: block;
